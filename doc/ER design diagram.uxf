@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>341</x>
+      <y>374</y>
+      <w>231</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>Events
+--
+EventId : int       {PK}
+Date : date NOT NULL
+*Name : nvarchar(256)*
+Attendees : int = -1 
+Description : ntext = 'Dette event har endnu ingen beskrivelse.'</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>693</x>
+      <y>374</y>
+      <w>242</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>EventRatings
+--
+EventRatingId : int NOT NULL {PK}
+EventId : int NOT NULL
+RatingId : int NOT NULL
+CONSTRAINT FK_EventRatings_Events {FK} (EventId) REFERENCES Events(EventId)
+CONSTRAINT FK_EventRatings_Ratings {FK} (RatingId) REFERENCES Ratings(RatingId)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>561</x>
+      <y>374</y>
+      <w>154</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1067</x>
+      <y>374</y>
+      <w>242</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Ratings
+--
+RatingId : int {PK} 
+Value : tinyint NOT NULL 
+Description : nvarchar(MAX) NOT NULL</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>924</x>
+      <y>374</y>
+      <w>165</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>429</x>
+      <y>253</y>
+      <w>319</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>Mandatory columns are with *bold*
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
