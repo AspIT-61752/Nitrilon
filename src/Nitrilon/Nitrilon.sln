@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nitrilon.Api", "Nitrilon.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrilon.Entities", "Nitrilon.Entities\Nitrilon.Entities.csproj", "{6D6A35AF-C75A-4348-9DCE-66B67C6D25AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrilon.DataAccess", "Nitrilon.DataAccess\Nitrilon.DataAccess.csproj", "{5A3ED9FA-F0EF-4616-A2CD-27CFF8775339}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6D6A35AF-C75A-4348-9DCE-66B67C6D25AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D6A35AF-C75A-4348-9DCE-66B67C6D25AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D6A35AF-C75A-4348-9DCE-66B67C6D25AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A3ED9FA-F0EF-4616-A2CD-27CFF8775339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A3ED9FA-F0EF-4616-A2CD-27CFF8775339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A3ED9FA-F0EF-4616-A2CD-27CFF8775339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A3ED9FA-F0EF-4616-A2CD-27CFF8775339}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
