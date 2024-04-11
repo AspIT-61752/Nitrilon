@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Nitrilon.DataAccess;
 using Nitrilon.Entities;
 
 namespace Nitrilon.Api.Controllers
@@ -50,7 +51,9 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                return Ok();
+                Repository repo = new();
+                int createdId = repo.Save(newEvent);
+                return Ok(createdId);
             }
             catch (Exception e)
             {
