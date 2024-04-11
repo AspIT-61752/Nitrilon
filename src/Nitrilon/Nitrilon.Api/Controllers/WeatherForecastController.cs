@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Nitrilon.Entities;
 
 namespace Nitrilon.Api.Controllers
 {
@@ -21,6 +22,7 @@ namespace Nitrilon.Api.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            Event e1 = new Event();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
