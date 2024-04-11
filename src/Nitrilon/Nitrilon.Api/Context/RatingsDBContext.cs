@@ -7,6 +7,7 @@ namespace Nitrilon.Api.Context
     // For mroe info: https://learn.microsoft.com/en-us/dotnet/api/system.data.entity.dbcontext?view=entity-framework-6.2.0
     public class RatingsDBContext : DbContext
     {
+        public DbSet<EventRatings> EventRatings { get; set; }
         public DbSet<Ratings> Ratings { get; set; }
         public DbSet<Events> Events { get; set; }
     }
