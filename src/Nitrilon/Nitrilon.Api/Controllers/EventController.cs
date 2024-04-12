@@ -21,14 +21,21 @@ namespace Nitrilon.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Event> GetAll()
+        public ActionResult<List<Event>> GetAll()
         {
-            List<Event> events = new()
-            {
-                new(){Id = 1}, new(){Id = 2}, new(){Id = 3}
-            };
+            Repository repo = new();
+            List<Event> events = new();
 
-            return events;
+            try
+            {
+                events = repo.GetAllEvents();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
+
+            return Ok(events);
         }
 
         [HttpGet("{id}")]
