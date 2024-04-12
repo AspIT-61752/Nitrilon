@@ -17,7 +17,17 @@ namespace Nitrilon.Api.Controllers
         [HttpPut]
         public IActionResult Put(Event eventToUpdate)
         {
-            return Ok();
+            Repository repo = new();
+
+            try
+            {
+                repo.EditEvent(eventToUpdate);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
+            return Ok(200);
         }
 
         [HttpGet]
@@ -41,14 +51,15 @@ namespace Nitrilon.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<Event> Get(int id)
         {
+            Repository repo = new();
             Event e = null;
-            if (id == 3)
+            try
             {
-                e = new() { Id = 3 };
+                e = repo.GetEvent(id);
             }
-            else
+            catch (Exception exception)
             {
-                return NotFound($"Event with the id of {id} was not found");
+                return StatusCode(500);
             }
             return Ok(e);
         }
