@@ -151,5 +151,62 @@ namespace Nitrilon.DataAccess
 
             connection.Close();
         }
+
+        public int SaveEventRating(int eventId, int ratingId)
+        {
+            int newId = 0;
+
+            // TODO: Handle attendees when the event is not over
+            // Remember to format the date correctly... 
+            // Also remember to add '' around the date in the sql string...
+            string sql = $"INSERT INTO EventRatings (EventId, RatingId) VALUES({eventId}, {ratingId});";
+
+            // 1: Make a sqlConnection object
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: Make a sqlCommand object
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            // TODO: Add a try-catch block to handle exceptions
+
+            // 3: Open the connection
+            connection.Open();
+
+            // TODO: Find a way to get the ID of the newly inserted event
+            // 4: Execute the insert command and get the id of the newly inserted event
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                // Get the id of the newly inserted event.
+                // For some rndom reason, the id is returned as a decimal.
+                // So we cast it to an int and store it in the newId variable.
+                newId = (int)reader.GetDecimal(0);
+            }
+
+            // 5: Close the connection
+            connection.Close();
+
+            return newId;
+
+            //int newId = 0;
+
+            //string sql = $"INSERT INTO EventRatings (EventId, RatingId) VALUES ({eventId}, {ratingId}); SELECT SCOPE_IDENTITY();";
+
+            //SqlConnection connection = new SqlConnection(connectionString);
+
+            //SqlCommand command = new SqlCommand(sql, connection);
+
+            //connection.Open();
+
+            //SqlDataReader reader = command.ExecuteReader();
+            //while (reader.Read())
+            //{
+            //    newId = (int)reader.GetDecimal(0);
+            //}
+
+            //connection.Close();
+
+            //return newId;
+        }
     }
 }
