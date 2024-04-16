@@ -187,26 +187,6 @@ namespace Nitrilon.DataAccess
             connection.Close();
 
             return newId;
-
-            //int newId = 0;
-
-            //string sql = $"INSERT INTO EventRatings (EventId, RatingId) VALUES ({eventId}, {ratingId}); SELECT SCOPE_IDENTITY();";
-
-            //SqlConnection connection = new SqlConnection(connectionString);
-
-            //SqlCommand command = new SqlCommand(sql, connection);
-
-            //connection.Open();
-
-            //SqlDataReader reader = command.ExecuteReader();
-            //while (reader.Read())
-            //{
-            //    newId = (int)reader.GetDecimal(0);
-            //}
-
-            //connection.Close();
-
-            //return newId;
         }
     }
 }
