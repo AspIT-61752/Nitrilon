@@ -1,0 +1,67 @@
+:root {
+  --background-color: #845ec2;
+  --text-color: #4d8076;
+  --accent-color: #e0cba8;
+
+  --card-container-background-color: #4d8076;
+  --card-height: 8rem;
+  --card-padding: 0.2rem;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  min-width: 256px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  background-color: var(--card-container-background-color);
+  border-radius: 0.2rem;
+  min-height: var(--card-height);
+  max-height: var(--card-height);
+
+  color: var(--accent-color);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header > * {
+  width: 50%;
+}
+
+.card-header h3:first-of-type {
+  text-align: left;
+  padding-left: var(--card-padding);
+}
+
+.card-header h3:last-of-type {
+  text-align: right;
+  padding-right: var(--card-padding);
+}
+
+.card-desc {
+  padding: 0 var(--card-padding);
+}
+
+#cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+#eventSelection {
+  /* TODO: Write this at some point */
+  color: black;
+}

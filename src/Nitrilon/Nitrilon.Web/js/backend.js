@@ -1,4 +1,7 @@
-var eventId = 2;
+var eventId;
+var eventURL = `https://localhost:7201/api/Event`;
+var cardsContainer = document.querySelector("#cardsContainer");
+var titleName = document.querySelector("#eventSelection");
 
 var goodRating = document.querySelector("#goodRating");
 var midRating = document.querySelector("#midRating");
@@ -15,6 +18,66 @@ goodRating.addEventListener("click", function () {
     });
 });*/
 
+// Fetches API for data
+// fetch("https://localhost:7201/api/Event")
+
+// Fetch API for data
+fetch(eventURL)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    data.forEach((event) => {
+      console.log(event.id);
+      var card = document.createElement("div");
+      // var idH3 = document.createElement("h3"); // Not relevant
+      var dateH3 = document.createElement("h3");
+      var nameH3 = document.createElement("h3");
+      var desc = document.createElement("p");
+      desc.setAttribute("class", "card-desc");
+
+      var divContainer = document.createElement("div");
+      divContainer.setAttribute("class", "card-header");
+      divContainer.appendChild(nameH3);
+      divContainer.appendChild(dateH3);
+
+      nameH3.textContent = event.name;
+      dateH3.textContent = new Date(event.date).toLocaleDateString();
+      desc.textContent = event.description;
+
+      // idH3.textContent = event.id; // Not relevant
+      // idH3.innerHTML = ""; // Deletes HTML elements
+
+      card.setAttribute("class", "card");
+      // card.appendChild(idH3); // Not relevant
+      // card.appendChild(nameH3);
+      card.appendChild(divContainer);
+      card.appendChild(desc);
+      // card.appendChild(dateH3);\
+
+      // idH3.innerText = event.id;
+
+      card.addEventListener(
+        "click",
+        function (e) {
+          // console.log(event);
+          eventId = event.id;
+          console.log(event.name);
+          titleName.textContent = `Rate ${event.name}`;
+          // console.log(event.id);
+          // console.log("eventId: " + eventId);
+          cardsContainer.innerHTML = ""; // Deletes all cards
+        },
+        false
+      );
+
+      cardsContainer.appendChild(card);
+    });
+  });
+// for each event in data
+
+// Create a card for each event
+
+// Posts a rating to the DB
 // A good rating
 goodRating.addEventListener("click", function (OnClick) {
   OnClick.preventDefault(); // Prevents default event propagation

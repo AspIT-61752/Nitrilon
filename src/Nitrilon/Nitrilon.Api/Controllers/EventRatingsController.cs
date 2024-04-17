@@ -18,7 +18,8 @@ namespace Nitrilon.Api.Controllers
             }
             catch (Exception e)
             {
-                StatusCode(500);
+                Console.WriteLine(e.Message);
+                return StatusCode(500);
             }
             return Ok();
         }

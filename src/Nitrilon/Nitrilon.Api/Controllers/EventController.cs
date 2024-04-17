@@ -11,6 +11,7 @@ namespace Nitrilon.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            // TODO: Write later
             return Ok();
         }
 
@@ -25,6 +26,7 @@ namespace Nitrilon.Api.Controllers
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return StatusCode(500);
             }
             return Ok(200);
@@ -42,6 +44,7 @@ namespace Nitrilon.Api.Controllers
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return StatusCode(500);
             }
 
@@ -57,8 +60,9 @@ namespace Nitrilon.Api.Controllers
             {
                 e = repo.GetEvent(id);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return StatusCode(500);
             }
             return Ok(e);
@@ -75,6 +79,7 @@ namespace Nitrilon.Api.Controllers
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return StatusCode(500); // Found with base.
             }
         }
