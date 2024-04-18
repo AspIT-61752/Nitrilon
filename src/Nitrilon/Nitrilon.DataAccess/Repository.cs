@@ -207,9 +207,6 @@ namespace Nitrilon.DataAccess
             connection.Close();
 
             return events;
-
-            //throw new NotImplementedException();
-
         }
 
         public void EditEvent(Event newEvent)
