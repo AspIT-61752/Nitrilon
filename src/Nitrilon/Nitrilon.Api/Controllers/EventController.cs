@@ -51,6 +51,25 @@ namespace Nitrilon.Api.Controllers
             return Ok(events);
         }
 
+        [HttpGet]
+        [Route("future")]
+        public ActionResult<List<Event>> GetFutureEvents()
+        {
+            Repository repo = new();
+            List<Event> events = new();
+
+            try
+            {
+                events = repo.GetFutureEvents();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return StatusCode(500);
+            }
+            return Ok(events);
+        }
+
         [HttpGet("{id}")]
         public ActionResult<Event> Get(int id)
         {

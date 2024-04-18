@@ -1,5 +1,6 @@
 var eventId;
-var eventURL = `https://localhost:7201/api/Event`;
+const eventURL = `https://localhost:7201/api/Event/future`;
+// const eventURL = `https://localhost:7201/api/Event`; // Get all events
 var cardsContainer = document.querySelector("#cardsContainer");
 var titleName = document.querySelector("#eventSelection");
 
@@ -136,14 +137,3 @@ function sendToServer(rating) {
     }
   }
 }
-
-// This will probably get a response from the server
-// fetch(url, requestOptions)
-//     .then((response) => response.json())
-//     .then((data) => {
-//     console.log(data);
-//     });
-
-// Fetch API for data
-// const data = fetch("https://localhost:7201/api/Event");
-// console.log(data);

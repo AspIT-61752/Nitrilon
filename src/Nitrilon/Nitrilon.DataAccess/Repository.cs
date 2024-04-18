@@ -70,19 +70,33 @@ namespace Nitrilon.DataAccess
 
             // Execute the command
             SqlDataReader reader = command.ExecuteReader();
+
+            int eventId = default;
+            DateTime date = default;
+            string name = default;
+            int attendees = default;
+            string description = default;
+
+            // Retrieve the data from the database
             while (reader.Read())
             {
-                e = new Event()
-                {
-                    Id = Convert.ToInt32(reader["EventId"]),
-                    Date = Convert.ToDateTime(reader["Date"]),
-                    Name = Convert.ToString(reader["Name"]),
-                    Attendees = Convert.ToInt32(reader["Attendees"]),
-                    Description = Convert.ToString(reader["Description"])
-                };
+                eventId = Convert.ToInt32(reader["EventId"]);
+                date = Convert.ToDateTime(reader["Date"]);
+                name = Convert.ToString(reader["Name"]);
+                attendees = Convert.ToInt32(reader["Attendees"]);
+                description = Convert.ToString(reader["Description"]);
+
+                e = new Event(eventId, date, name, attendees, description);
             }
 
-            return e;
+            if (e != null)
+            {
+                throw new Exception("Event not found.");
+            }
+            else
+            {
+                return e;
+            }
         }
 
         /// <summary>
@@ -109,31 +123,93 @@ namespace Nitrilon.DataAccess
             // 4. Execute the command
             SqlDataReader reader = command.ExecuteReader();
 
+            int id = default;
+            DateTime date = default;
+            string name = default;
+            int attendees = default;
+            string description = default;
+
             // 5. Retrieve the data from the database
             while (reader.Read())
             {
-                int id = Convert.ToInt32(reader["EventId"]);
-                DateTime date = Convert.ToDateTime(reader["Date"]);
-                string name = Convert.ToString(reader["Name"]);
-                int attendees = Convert.ToInt32(reader["Attendees"]);
-                string description = Convert.ToString(reader["Description"]);
-
-                Event e = new()
+                try
                 {
-                    Id = id,
-                    Date = date,
-                    Name = name,
-                    Attendees = attendees,
-                    Description = description
-                };
+                    id = Convert.ToInt32(reader["EventId"]);
+                    date = Convert.ToDateTime(reader["Date"]);
+                    name = Convert.ToString(reader["Name"]);
+                    attendees = Convert.ToInt32(reader["Attendees"]);
+                    description = Convert.ToString(reader["Description"]);
+                    Event e = new(id, date, name, attendees, description);
 
-                events.Add(e);
+                    events.Add(e);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
             }
 
+            // TODO: Ask Mads about this. How do we handle the return value if the list is empty? Does the connection close automatically if there's an exception? 
             // 6. Close the connection
             connection.Close();
 
             return events;
+        }
+
+        public List<Event> GetFutureEvents()
+        {
+            List<Event> events = new List<Event>();
+
+            string sql = "SELECT * FROM Events WHERE Date > DATEADD(DAY, -3, GETDATE())"; // This will get all events from the last 3 days and in the future.
+
+            // 1: Make a sqlConnection object
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: Make a sqlCommand object
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            // 3: Open the connection
+            connection.Open();
+
+            // 4. Execute the command
+            SqlDataReader reader = command.ExecuteReader();
+
+            int id = default;
+            DateTime date = default;
+            string name = default;
+            int attendees = default;
+            string description = default;
+
+            // 5. Retrieve the data from the database
+            while (reader.Read())
+            {
+                try
+                {
+                    id = Convert.ToInt32(reader["EventId"]);
+                    date = Convert.ToDateTime(reader["Date"]);
+                    name = Convert.ToString(reader["Name"]);
+                    attendees = Convert.ToInt32(reader["Attendees"]);
+                    description = Convert.ToString(reader["Description"]);
+                    Event e = new(id, date, name, attendees, description);
+
+                    events.Add(e);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            }
+
+            // TODO: Ask Mads about this. How do we handle the return value if the list is empty? Does the connection close automatically if there's an exception? 
+            // 6. Close the connection
+            connection.Close();
+
+            return events;
+
+            //throw new NotImplementedException();
+
         }
 
         public void EditEvent(Event newEvent)
