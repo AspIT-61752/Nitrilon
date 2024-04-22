@@ -6,25 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
     <script src="./js/backend.js" defer></script>
-    <title>Document</title>
+    <title>Rate this event</title>
 </head>
 
 <body>
     <section>
+        <!-- The container for every card created by backend.js -->
         <div id="cardsContainer">
+        </div>
 
-        </div>
-        <div>
-            <!-- <input type="number" name="EventId" id="EventID"> -->
-
-            <!-- TODO: Write what event this is. Something like "What would you rate EVENT_NAME" -->
-            <h2 id="eventSelection">Selected event</h2>
-        </div>
-        <div>
-            <img src="./img/smiley-1" alt="smiley-1" srcset="" id="goodRating">
-            <img src="./img/smiley-2" alt="smiley-2" srcset="" id="midRating">
-            <img src="./img/smiley-3" alt="smiley-3" srcset="" id="badRating">
-        </div>
+        <!-- The container for everything that is used to rate the selected event -->
+        <article id="ratingContainer" class="hide">
+            <div>
+                <h2 id="eventSelection">Selected event</h2>
+            </div>
+            <div id="ratingButtonContainer">
+                <!-- TODO: Check if these are right -->
+                <img src="./icons/svg/Smile.svg" alt="smiley-1" srcset="" id="goodRating">
+                <img src="./icons/svg/Meh.svg" alt="smiley-2" srcset="" id="midRating">
+                <img src="./icons/svg/Bad.svg" alt="smiley-3" srcset="" id="badRating">
+            </div>
+        </article>
     </section>
 </body>
 

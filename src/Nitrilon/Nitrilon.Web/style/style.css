@@ -1,3 +1,7 @@
+/* Open Sans and Raleway */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* ? Variables */
 :root {
   --background-color: #845ec2;
   --text-color: #4d8076;
@@ -6,12 +10,34 @@
   --card-container-background-color: #4d8076;
   --card-height: 8rem;
   --card-padding: 0.2rem;
+
+  --font-railway: "Raleway", sans-serif;
+  --font-open-sans: "Open Sans", sans-serif;
 }
 
 * {
   padding: 0;
   margin: 0;
 }
+
+body {
+  height: 100%;
+}
+
+h3,
+p {
+  font-family: var(--font-railway);
+}
+
+h3 {
+  font-weight: 500;
+}
+
+p {
+  font-weight: 400;
+}
+
+/* ? Classes */
 
 .card {
   min-width: 256px;
@@ -21,6 +47,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2rem;
+  padding: 0.4rem 0;
 
   background-color: var(--card-container-background-color);
   border-radius: 0.2rem;
@@ -48,11 +75,35 @@
 .card-header h3:last-of-type {
   text-align: right;
   padding-right: var(--card-padding);
+
+  /* Not sure if this makes it better or not, have to ask for a second oppinion */
+  /* font-size: 1.5rem; */
 }
 
 .card-desc {
   padding: 0 var(--card-padding);
 }
+
+.raleway-font {
+  font-family: var(--font-railway);
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
+
+/* <weight>: Use a value from 300 to 800 */
+/* <width>: Use a value from 75 to 100 */
+
+.open-sans-font {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  /* font-variation-settings:
+    "width" <width>; */
+}
+
+/* ? IDs */
 
 #cardsContainer {
   display: flex;
@@ -62,6 +113,39 @@
 }
 
 #eventSelection {
-  /* TODO: Write this at some point */
   color: black;
+  /* text-align: center;
+  margin: 4vh 0; */
+
+  /* How the font looks */
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 4rem;
+}
+
+/* IDs for the rating elements */
+#ratingContainer {
+  text-align: center;
+  align-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+#ratingButtonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 16vh 0;
+  gap: 1rem;
+}
+
+#ratingButtonContainer > img {
+  width: 18vw;
+}
+
+/* Used to hide the rating section */
+#ratingContainer.hide {
+  display: none;
 }

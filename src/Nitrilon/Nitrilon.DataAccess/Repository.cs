@@ -85,8 +85,9 @@ namespace Nitrilon.DataAccess
                 name = Convert.ToString(reader["Name"]);
                 attendees = Convert.ToInt32(reader["Attendees"]);
                 description = Convert.ToString(reader["Description"]);
+                List<Rating> ratings = new List<Rating>(); // TODO: This is empty. Should we get the ratings from the database as well?
 
-                e = new Event(eventId, date, name, attendees, description);
+                e = new Event(eventId, date, name, attendees, description, ratings);
             }
 
             if (e != null)
@@ -139,7 +140,9 @@ namespace Nitrilon.DataAccess
                     name = Convert.ToString(reader["Name"]);
                     attendees = Convert.ToInt32(reader["Attendees"]);
                     description = Convert.ToString(reader["Description"]);
-                    Event e = new(id, date, name, attendees, description);
+                    List<Rating> ratings = new List<Rating>(); // TODO: This is empty. Should we get the ratings from the database as well?
+
+                    Event e = new(id, date, name, attendees, description, ratings);
 
                     events.Add(e);
                 }
@@ -191,7 +194,9 @@ namespace Nitrilon.DataAccess
                     name = Convert.ToString(reader["Name"]);
                     attendees = Convert.ToInt32(reader["Attendees"]);
                     description = Convert.ToString(reader["Description"]);
-                    Event e = new(id, date, name, attendees, description);
+                    List<Rating> ratings = new List<Rating>(); // TODO: This is empty. Should we get the ratings from the database as well?
+
+                    Event e = new(id, date, name, attendees, description, ratings);
 
                     events.Add(e);
                 }
