@@ -95,12 +95,12 @@ namespace Nitrilon.Entities
         /// <summary>
         /// The constructor for the Event class
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="date"></param>
-        /// <param name="name"></param>
-        /// <param name="attendees"></param>
-        /// <param name="description"></param>
-        /// <param name="ratings"></param>
+        /// <param name="id">The ID of the event</param>
+        /// <param name="date">The date of the event</param>
+        /// <param name="name">The name of the event</param>
+        /// <param name="attendees">How many attendees the event has</param>
+        /// <param name="description">The description of the event. CAN be null or empty</param>
+        /// <param name="ratings">The ratings for the event</param>
         /// <exception cref="ArgumentNullException">If ratings is null, throw an ArgumentNullException.</exception>
         public Event(int id, DateTime date, string name, int attendees, string description, List<Rating> ratings)
         {
