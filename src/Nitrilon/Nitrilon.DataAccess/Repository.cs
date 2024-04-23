@@ -5,6 +5,7 @@ namespace Nitrilon.DataAccess
 {
     public class Repository
     {
+        // The connection string to the database
         private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NitrilonDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
         /// <summary>
@@ -27,24 +28,30 @@ namespace Nitrilon.DataAccess
             // 2: Make a sqlCommand object
             SqlCommand command = new SqlCommand(sql, connection);
 
-            // TODO: Add a try-catch block to handle exceptions
-
-            // 3: Open the connection
-            connection.Open();
-
-            // TODO: Find a way to get the ID of the newly inserted event
-            // 4: Execute the insert command and get the id of the newly inserted event
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                // Get the id of the newly inserted event.
-                // For some rndom reason, the id is returned as a decimal.
-                // So we cast it to an int and store it in the newId variable.
-                newId = (int)reader.GetDecimal(0);
-            }
+                // 3: Open the connection
+                connection.Open();
 
-            // 5: Close the connection
-            connection.Close();
+                // TODO: Find a way to get the ID of the newly inserted event
+                // 4: Execute the insert command and get the id of the newly inserted event
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    // Get the id of the newly inserted event.
+                    // For some random reason, the id is returned as a decimal.
+                    // So we cast it to an int and store it in the newId variable.
+                    newId = (int)reader.GetDecimal(0);
+                }
+
+                // 5: Close the connection
+                connection.Close();
+            }
+            catch (Exception excep)
+            {
+
+                Console.WriteLine(excep.Message);
+            }
 
             return newId;
         }
@@ -116,54 +123,65 @@ namespace Nitrilon.DataAccess
             // 2: Make a sqlCommand object
             SqlCommand command = new SqlCommand(sql, connection);
 
-            // TODO: Add a try-catch block to handle exceptions
-
-            // 3: Open the connection
-            connection.Open();
-
-            // 4. Execute the command
-            SqlDataReader reader = command.ExecuteReader();
-
-            int id = default;
-            DateTime date = default;
-            string name = default;
-            int attendees = default;
-            string description = default;
-
-            // 5. Retrieve the data from the database
-            while (reader.Read())
+            try
             {
-                try
+                // 3: Open the connection
+                connection.Open();
+
+                // 4. Execute the command
+                SqlDataReader reader = command.ExecuteReader();
+
+                int id = default;
+                DateTime date = default;
+                string name = default;
+                int attendees = default;
+                string description = default;
+
+                // 5. Retrieve the data from the database
+                while (reader.Read())
                 {
-                    id = Convert.ToInt32(reader["EventId"]);
-                    date = Convert.ToDateTime(reader["Date"]);
-                    name = Convert.ToString(reader["Name"]);
-                    attendees = Convert.ToInt32(reader["Attendees"]);
-                    description = Convert.ToString(reader["Description"]);
-                    List<Rating> ratings = new List<Rating>(); // TODO: This is empty. Should we get the ratings from the database as well?
+                    try
+                    {
+                        id = Convert.ToInt32(reader["EventId"]);
+                        date = Convert.ToDateTime(reader["Date"]);
+                        name = Convert.ToString(reader["Name"]);
+                        attendees = Convert.ToInt32(reader["Attendees"]);
+                        description = Convert.ToString(reader["Description"]);
+                        List<Rating> ratings = new List<Rating>(); // TODO: This is empty. Should we get the ratings from the database as well?
 
-                    Event e = new(id, date, name, attendees, description, ratings);
+                        // Create a new event object and add it to the list of events
+                        Event e = new(id, date, name, attendees, description, ratings);
+                        events.Add(e);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
 
-                    events.Add(e);
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
 
+                // TODO: Ask Mads about this. How do we handle the return value if the list is empty? Does the connection close automatically if there's an exception? 
+                // 6. Close the connection
+                connection.Close();
             }
+            catch (Exception)
+            {
 
-            // TODO: Ask Mads about this. How do we handle the return value if the list is empty? Does the connection close automatically if there's an exception? 
-            // 6. Close the connection
-            connection.Close();
+                throw;
+            }
 
             return events;
         }
 
+        /// <summary>
+        /// GET: This method retrieves all events from the database that are in the future.
+        /// </summary>
+        /// <returns>A list of events</returns>
         public List<Event> GetFutureEvents()
         {
             List<Event> events = new List<Event>();
 
+            // The SQL query to get all events from the last 3 days and in the future
             string sql = "SELECT * FROM Events WHERE Date > DATEADD(DAY, -3, GETDATE())"; // This will get all events from the last 3 days and in the future.
 
             // 1: Make a sqlConnection object
@@ -172,48 +190,61 @@ namespace Nitrilon.DataAccess
             // 2: Make a sqlCommand object
             SqlCommand command = new SqlCommand(sql, connection);
 
-            // 3: Open the connection
-            connection.Open();
-
-            // 4. Execute the command
-            SqlDataReader reader = command.ExecuteReader();
-
-            int id = default;
-            DateTime date = default;
-            string name = default;
-            int attendees = default;
-            string description = default;
-
-            // 5. Retrieve the data from the database
-            while (reader.Read())
+            try
             {
-                try
+                // 3: Open the connection
+                connection.Open();
+
+                // 4. Execute the command
+                SqlDataReader reader = command.ExecuteReader();
+
+                int id = default;
+                DateTime date = default;
+                string name = default;
+                int attendees = default;
+                string description = default;
+
+                // 5. Retrieve the data from the database
+                while (reader.Read())
                 {
-                    id = Convert.ToInt32(reader["EventId"]);
-                    date = Convert.ToDateTime(reader["Date"]);
-                    name = Convert.ToString(reader["Name"]);
-                    attendees = Convert.ToInt32(reader["Attendees"]);
-                    description = Convert.ToString(reader["Description"]);
-                    List<Rating> ratings = new List<Rating>(); // TODO: This is empty. Should we get the ratings from the database as well?
+                    try
+                    {
+                        id = Convert.ToInt32(reader["EventId"]);
+                        date = Convert.ToDateTime(reader["Date"]);
+                        name = Convert.ToString(reader["Name"]);
+                        attendees = Convert.ToInt32(reader["Attendees"]);
+                        description = Convert.ToString(reader["Description"]);
+                        List<Rating> ratings = new List<Rating>(); // TODO: This is empty. Should we get the ratings from the database as well?
 
-                    Event e = new(id, date, name, attendees, description, ratings);
+                        Event e = new(id, date, name, attendees, description, ratings);
 
-                    events.Add(e);
+                        events.Add(e);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
 
+                // TODO: Ask Mads about this. How do we handle the return value if the list is empty? Does the connection close automatically if there's an exception? 
+                // 6. Close the connection
+                connection.Close();
+            }
+            catch (Exception excep)
+            {
+
+                Console.WriteLine(excep.Message);
             }
 
-            // TODO: Ask Mads about this. How do we handle the return value if the list is empty? Does the connection close automatically if there's an exception? 
-            // 6. Close the connection
-            connection.Close();
 
             return events;
         }
 
+        /// <summary>
+        /// UPDATE: This method updates an event in the database.
+        /// </summary>
+        /// <param name="newEvent">The new event data to be updated in the database. (It must have the same ID as the event to be updated)</param>
         public void EditEvent(Event newEvent)
         {
             // TODO: Comments
@@ -230,6 +261,12 @@ namespace Nitrilon.DataAccess
             connection.Close();
         }
 
+        /// <summary>
+        /// POST: This method saves a new rating to the database.
+        /// </summary>
+        /// <param name="eventId">The id of the event to be rated.</param>
+        /// <param name="ratingId">The id of the rating. (1-3)</param>
+        /// <returns>The ID of the newly inserted event rating.</returns>
         public int SaveEventRating(int eventId, int ratingId)
         {
             int newId = 0;
@@ -245,24 +282,30 @@ namespace Nitrilon.DataAccess
             // 2: Make a sqlCommand object
             SqlCommand command = new SqlCommand(sql, connection);
 
-            // TODO: Add a try-catch block to handle exceptions
-
-            // 3: Open the connection
-            connection.Open();
-
-            // TODO: Find a way to get the ID of the newly inserted event
-            // 4: Execute the insert command and get the id of the newly inserted event
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                // Get the id of the newly inserted event.
-                // For some rndom reason, the id is returned as a decimal.
-                // So we cast it to an int and store it in the newId variable.
-                newId = (int)reader.GetDecimal(0);
-            }
+                // 3: Open the connection
+                connection.Open();
 
-            // 5: Close the connection
-            connection.Close();
+                // TODO: Find a way to get the ID of the newly inserted event
+                // 4: Execute the insert command and get the id of the newly inserted event
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    // Get the id of the newly inserted event.
+                    // For some random reason, the id is returned as a decimal.
+                    // So we cast it to an int and store it in the newId variable.
+                    newId = (int)reader.GetDecimal(0);
+                }
+
+                // 5: Close the connection
+                connection.Close();
+            }
+            catch (Exception excep)
+            {
+
+                Console.WriteLine(excep.Message);
+            }
 
             return newId;
         }
