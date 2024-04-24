@@ -13,7 +13,7 @@ namespace Nitrilon.Entities
         private string name;
         private int attendees;
         private string description;
-        private List<Rating> ratings;
+        private EventRatingData ratings;
 
         #endregion
 
@@ -92,6 +92,7 @@ namespace Nitrilon.Entities
         #endregion
 
         #region Constructors
+
         /// <summary>
         /// The constructor for the Event class
         /// </summary>
@@ -100,16 +101,29 @@ namespace Nitrilon.Entities
         /// <param name="name">The name of the event</param>
         /// <param name="attendees">How many attendees the event has</param>
         /// <param name="description">The description of the event. CAN be null or empty</param>
+        public Event(int id, DateTime date, string name, int attendees, string description)
+        {
+            this.id = id;
+            this.date = date;
+            this.name = name;
+            this.attendees = attendees;
+            this.description = description;
+        }
+
+        /// <summary>
+        /// The overloaded constructor for the Event class
+        /// </summary>
+        /// <param name="id">The ID of the event</param>
+        /// <param name="date">The date of the event</param>
+        /// <param name="name">The name of the event</param>
+        /// <param name="attendees">How many attendees the event has</param>
+        /// <param name="description">The description of the event. CAN be null or empty</param>
         /// <param name="ratings">The ratings for the event</param>
         /// <exception cref="ArgumentNullException">If ratings is null, throw an ArgumentNullException.</exception>
-        public Event(int id, DateTime date, string name, int attendees, string description, List<Rating> ratings)
+        public Event(int id, DateTime date, string name, int attendees, string description, EventRatingData ratingsData)
+            : this(id, date, name, attendees, description) // Calls the other constructor first
         {
-            Id = id;
-            Date = date;
-            Name = name;
-            Attendees = attendees;
-            Description = description;
-            this.ratings = ratings ?? throw new ArgumentNullException(nameof(ratings)); // If ratings is null, throw an ArgumentNullException.
+            ratings = ratingsData;
         }
 
         /// <summary>
@@ -117,32 +131,35 @@ namespace Nitrilon.Entities
         /// </summary>
         [JsonConstructor]
         public Event() { }
+
         #endregion
 
         #region Methods
+        // REMOVED: GetRatingAverage method.
+        // Might move it to the EventRatingData class.
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public double GetRatingAverage()
-        {
-            if (ratings.Count > 0)
-            {
-                double average = 0.0;
-                int sum = 0;
-                foreach (Rating rating in ratings)
-                {
-                    sum += rating.RatingValue;
-                }
+        //public double GetRatingAverage()
+        //{
+        //    if (ratings.Count > 0)
+        //    {
+        //        double average = 0.0;
+        //        int sum = 0;
+        //        foreach (EventRatingData rating in ratings)
+        //        {
+        //            sum += rating.RatingValue;
+        //        }
 
-                average = (double)sum / (double)ratings.Count;
-                return average;
-            }
-            else
-            {
-                return -1.0;
-            }
-        }
+        //        average = (double)sum / (double)ratings.Count;
+        //        return average;
+        //    }
+        //    else
+        //    {
+        //        return -1.0;
+        //    }
+        //}
         #endregion
 
     }

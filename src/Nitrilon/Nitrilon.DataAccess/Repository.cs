@@ -92,9 +92,8 @@ namespace Nitrilon.DataAccess
                 name = Convert.ToString(reader["Name"]);
                 attendees = Convert.ToInt32(reader["Attendees"]);
                 description = Convert.ToString(reader["Description"]);
-                List<Rating> ratings = new List<Rating>(); // TODO: This is empty. Should we get the ratings from the database as well?
 
-                e = new Event(eventId, date, name, attendees, description, ratings);
+                e = new Event(eventId, date, name, attendees, description);
             }
 
             if (e != null)
@@ -147,10 +146,9 @@ namespace Nitrilon.DataAccess
                         name = Convert.ToString(reader["Name"]);
                         attendees = Convert.ToInt32(reader["Attendees"]);
                         description = Convert.ToString(reader["Description"]);
-                        List<Rating> ratings = new List<Rating>(); // TODO: This is empty. Should we get the ratings from the database as well?
 
                         // Create a new event object and add it to the list of events
-                        Event e = new(id, date, name, attendees, description, ratings);
+                        Event e = new(id, date, name, attendees, description);
                         events.Add(e);
                     }
                     catch (Exception ex)
@@ -214,9 +212,8 @@ namespace Nitrilon.DataAccess
                         name = Convert.ToString(reader["Name"]);
                         attendees = Convert.ToInt32(reader["Attendees"]);
                         description = Convert.ToString(reader["Description"]);
-                        List<Rating> ratings = new List<Rating>(); // TODO: This is empty. Should we get the ratings from the database as well?
 
-                        Event e = new(id, date, name, attendees, description, ratings);
+                        Event e = new(id, date, name, attendees, description);
 
                         events.Add(e);
                     }
@@ -239,6 +236,33 @@ namespace Nitrilon.DataAccess
 
 
             return events;
+        }
+
+        public EventRatingData GetEventRatingDataBy(int eventId)
+        {
+            int badRatingCount = 0;
+            int neutralRatingCount = 0;
+            int goodRatingCount = 0;
+            EventRatingData ratingData = default;
+
+            string sql = $"EXEC CountAllowedRatingsForEvent @EventId = {eventId}";
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                badRatingCount = Convert.ToInt32(reader["RatingBad"]);
+                neutralRatingCount = Convert.ToInt32(reader["RatingAverage"]);
+                goodRatingCount = Convert.ToInt32(reader["RatingGood"]);
+                ratingData = new EventRatingData(badRatingCount, neutralRatingCount, goodRatingCount);
+            }
+
+            connection.Close();
+
+            return ratingData;
         }
 
         /// <summary>

@@ -70,23 +70,23 @@ fetch(eventURL)
     });
   });
 
-// Posts a rating to the DB
+// Posts a rating to the DB (1 => bad; 2 => average; 3 => good)
 // A good rating
 goodRating.addEventListener("click", function (OnClick) {
   OnClick.preventDefault(); // Prevents default event propagation
-  sendToServer(1); // Send rating to server
+  sendToServer(3); // Send rating to backend
 });
 
 // A mid rating
 midRating.addEventListener("click", function (OnClick) {
   OnClick.preventDefault(); // Prevents default event propagation
-  sendToServer(2); // Send rating to server
+  sendToServer(2); // Send rating to backend
 });
 
 // A bad rating
 badRating.addEventListener("click", function (OnClick) {
   OnClick.preventDefault(); // Prevents default event propagation
-  sendToServer(3); // Send rating to server
+  sendToServer(1); // Send rating to backend
 });
 
 // POST a rating

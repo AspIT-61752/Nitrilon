@@ -87,6 +87,26 @@ namespace Nitrilon.Api.Controllers
             return Ok(e);
         }
 
+        [HttpGet]
+        [Route("GetEventRatingDataBy")]
+        public ActionResult<EventRatingData> GetRatingData(int eventId)
+        {
+            Repository repo = new();
+            EventRatingData ratingData = default;
+
+            try
+            {
+                ratingData = repo.GetEventRatingDataBy(eventId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500);
+            }
+
+            return ratingData;
+        }
+
         [HttpPost]
         public IActionResult Add(Event newEvent)
         {
