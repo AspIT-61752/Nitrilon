@@ -8,6 +8,11 @@ namespace Nitrilon.Api.Controllers
     [ApiController]
     public class EventController : ControllerBase
     {
+        /// <summary>
+        /// Deletes an event from the database, based on the ID of the event to delete
+        /// </summary>
+        /// <param name="id">The ID of the event to delete</param>
+        /// <returns>The status code of the operation</returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -15,6 +20,11 @@ namespace Nitrilon.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Updates an event in the database, based on the ID of the event to update
+        /// </summary>
+        /// <param name="eventToUpdate">The event to update and its new values</param>
+        /// <returns>The status code of the operation</returns>
         [HttpPut]
         public IActionResult Put(Event eventToUpdate)
         {
@@ -29,9 +39,14 @@ namespace Nitrilon.Api.Controllers
                 Console.WriteLine(e.Message);
                 return StatusCode(500);
             }
+
             return Ok(200);
         }
 
+        /// <summary>
+        /// Gets EVERY event from the database
+        /// </summary>
+        /// <returns>The events from the database or a 500 status code if an error occurred</returns>
         [HttpGet]
         public ActionResult<List<Event>> GetAll()
         {
@@ -51,6 +66,10 @@ namespace Nitrilon.Api.Controllers
             return Ok(events);
         }
 
+        /// <summary>
+        /// Gets every event from 3 days ago and onwards
+        /// </summary>
+        /// <returns>The events or a 500 status code if an error occurred</returns>
         [HttpGet]
         [Route("future")]
         public ActionResult<List<Event>> GetFutureEvents()
@@ -67,14 +86,21 @@ namespace Nitrilon.Api.Controllers
                 Console.WriteLine(e.Message);
                 return StatusCode(500);
             }
+
             return Ok(events);
         }
 
+        /// <summary>
+        /// Gets a specific event by its ID
+        /// </summary>
+        /// <param name="id">The ID of the event to get</param>
+        /// <returns>The event with the specified ID or a 500 status code if an error occurred</returns>
         [HttpGet("{id}")]
         public ActionResult<Event> Get(int id)
         {
             Repository repo = new();
-            Event e = null;
+            Event e = new();
+
             try
             {
                 e = repo.GetEvent(id);
@@ -84,9 +110,15 @@ namespace Nitrilon.Api.Controllers
                 Console.WriteLine(ex.Message);
                 return StatusCode(500);
             }
+
             return Ok(e);
         }
 
+        /// <summary>
+        /// Gets the rating data for a specific event
+        /// </summary>
+        /// <param name="eventId">The ID of the event to get the rating data for</param>
+        /// <returns>The rating data for the event</returns>
         [HttpGet]
         [Route("GetEventRatingDataBy")]
         public ActionResult<EventRatingData> GetRatingData(int eventId)
@@ -107,20 +139,29 @@ namespace Nitrilon.Api.Controllers
             return ratingData;
         }
 
+        /// <summary>
+        /// Adds a new event to the database
+        /// </summary>
+        /// <param name="newEvent">The event to add to the database</param>
+        /// <returns>Returns the ID of the newly created event or a 500 status code if an error occurred</returns>
         [HttpPost]
         public IActionResult Add(Event newEvent)
         {
+
+            Repository repo = new();
+            int createdId = default;
+
             try
             {
-                Repository repo = new();
-                int createdId = repo.Save(newEvent);
-                return Ok(createdId);
+                createdId = repo.Save(newEvent);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return StatusCode(500); // Found with base.
             }
+
+            return Ok(createdId);
         }
     }
 }
