@@ -5,21 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
-    <script src="./js/backend.js" defer></script>
-    <title>Rate this event</title>
+    <title>Nitrilon</title>
 </head>
 
 <body>
+    <main>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./page/rate-events.html">Rate events</a></li>
+                    <li><a href="./page/view-event-ratings.html">View event ratings</a></li>
+                </ul>
+            </nav>
+        </header>
+    </main>
+
     <section>
-        <!-- The container for every card created by backend.js -->
-        <div id="cardsContainer">
-        </div>
+
+        <h1>Vær hilset rejsende. Hvad vil du i dag?</h1>
+
+        <article id="cardsContainer">
+            <div>
+                <a href="./page/rate-events.html">
+                    <div class="card">
+                        <h2>Rate events</h2>
+                    </div>
+                </a>
+            </div>
+
+            <div>
+                <a href="./page/view-event-ratings.html">
+                    <div class="card">
+                        <h2>View event ratings</h2>
+                    </div>
+                </a>
+            </div>
+        </article>
 
         <!-- The container for everything that is used to rate the selected event -->
         <article id="ratingContainer" class="hide">
             <div>
                 <h2 id="eventSelection">Selected event</h2>
             </div>
+
             <div id="ratingButtonContainer">
                 <img src="./icons/svg/Bad.svg" alt="smiley-3" srcset="" id="badRating">
                 <img src="./icons/svg/Meh.svg" alt="smiley-2" srcset="" id="midRating">

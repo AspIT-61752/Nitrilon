@@ -4,18 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
-    <script src="./js/backend.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <script src="../js/admin-view-ratings.js" defer></script>
     <title>Rate this event</title>
 </head>
 
 <body>
-    <section>
-        <!-- The container for every card created by backend.js -->
+    <h1>Data from API</h1>
+    <div id="data-container">
+        <!-- Data from API will be displayed here -->
+    </div>
+
+    <!-- <section>
         <div id="cardsContainer">
         </div>
 
-        <!-- The container for everything that is used to rate the selected event -->
         <article id="ratingContainer" class="hide">
             <div>
                 <h2 id="eventSelection">Selected event</h2>
@@ -26,7 +29,7 @@
                 <img src="./icons/svg/Smile.svg" alt="smiley-1" srcset="" id="goodRating">
             </div>
         </article>
-    </section>
+    </section> -->
 </body>
 
 </html>
