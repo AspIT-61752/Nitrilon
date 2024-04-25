@@ -6,6 +6,12 @@
         private int neutralRatingCount;
         private int goodRatingCount;
 
+        /// <summary>
+        /// The constructor for the EventRatingData class
+        /// </summary>
+        /// <param name="badRatingCount">The number of bad ratings for the event</param>
+        /// <param name="neutralRatingCount">The number of neutral ratings for the event</param>
+        /// <param name="goodRatingCount">The number of good ratings for the event</param>
         public EventRatingData(int badRatingCount, int neutralRatingCount, int goodRatingCount)
         {
             BadRatingCount = badRatingCount;
