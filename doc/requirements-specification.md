@@ -29,6 +29,17 @@ Aktører:
 
 07: Når den klargøringsansvarlige har valgt et event, skal systemet viderestille til bedømmelsessiden.
 
+# Subsystem 02: Medlemshåndtering
+
+## Aktører
+
+- Medlemsansvarlige: Den der skal kunne tilføje, fjerne og se medlemmer samt medlemskab
+
+1. Den medlemsansvarlige skal have et overblik over alle medlemmer og medlemskabs type.
+2. Den medlemsansvarlige skal have mulighed for at sætte et medlems status til passiv/aktiv.
+3. Den medlemsansvarlige skal kunne indmelde nye medlemmer.
+4. Den medlemsansvarlige skal kunne udmelde medlemmer.
+
 ## Ikke-funktionelle krav
 
 # IKKE_FUNKTIONELLE KRAV
