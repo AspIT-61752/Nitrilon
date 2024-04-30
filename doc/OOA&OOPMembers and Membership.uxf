@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>6</zoom_level>
+  <zoom_level>12</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>24</x>
-      <y>252</y>
-      <w>240</w>
-      <h>84</h>
+      <x>0</x>
+      <y>216</y>
+      <w>480</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>Members
 --
@@ -23,13 +23,15 @@ PhoneNumber: nvchar(16)
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>24</x>
-      <y>144</y>
-      <w>756</w>
-      <h>96</h>
+      <x>0</x>
+      <y>0</y>
+      <w>1512</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>SRC support.discord.com
 (smaller than nvchar(MAX) 2GB vs text 65kb)
+
+PhoneNumber is nvarchar(16) because we use [computer number] (1, 2, 4, 8, 16, 32 ... )
 
 1 Member has 1 Membership
 1 Membership has many Members
@@ -43,10 +45,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>672</x>
-      <y>252</y>
-      <w>108</w>
-      <h>84</h>
+      <x>1296</x>
+      <y>216</y>
+      <w>216</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>Memberships
 --
@@ -59,10 +61,10 @@ Desc: nvchar(MAX)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>258</x>
-      <y>276</y>
-      <w>426</w>
-      <h>24</h>
+      <x>468</x>
+      <y>264</y>
+      <w>852</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -72,10 +74,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>462</x>
-      <y>600</y>
-      <w>90</w>
-      <h>24</h>
+      <x>876</x>
+      <y>912</y>
+      <w>180</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
@@ -85,10 +87,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>576</y>
-      <w>240</w>
-      <h>96</h>
+      <x>1032</x>
+      <y>864</y>
+      <w>480</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>Membership
 --
@@ -102,17 +104,17 @@ Membership(int membershipId, string name, string description)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>24</x>
-      <y>576</y>
-      <w>444</w>
-      <h>96</h>
+      <x>0</x>
+      <y>864</y>
+      <w>888</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>Member
 --
 *- memberId: int*
 *- membership: Membership*
-*- mullName: string*
-*- moinDate: DateTime*
+*- fullName: string*
+*- joinDate: DateTime*
 - email: string
 - phoneNumber: string
 --
@@ -124,10 +126,10 @@ Member(int memberId, Membership membership, string fullname, DateTime date, stri
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>318</x>
-      <y>396</y>
-      <w>240</w>
-      <h>150</h>
+      <x>588</x>
+      <y>504</y>
+      <w>480</w>
+      <h>300</h>
     </coordinates>
     <panel_attributes>Repository
 --
