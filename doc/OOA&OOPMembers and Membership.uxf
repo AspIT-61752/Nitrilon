@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
+      <x>156</x>
       <y>216</y>
       <w>480</w>
       <h>168</h>
@@ -23,7 +23,7 @@ PhoneNumber: nvchar(16)
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
+      <x>156</x>
       <y>0</y>
       <w>1512</w>
       <h>192</h>
@@ -45,7 +45,7 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1296</x>
+      <x>1452</x>
       <y>216</y>
       <w>216</w>
       <h>168</h>
@@ -61,7 +61,7 @@ Desc: nvchar(MAX)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>468</x>
+      <x>624</x>
       <y>264</y>
       <w>852</w>
       <h>48</h>
@@ -74,7 +74,7 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>876</x>
+      <x>1032</x>
       <y>912</y>
       <w>180</w>
       <h>48</h>
@@ -87,7 +87,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1032</x>
+      <x>1188</x>
       <y>864</y>
       <w>480</w>
       <h>192</h>
@@ -104,7 +104,7 @@ Membership(int membershipId, string name, string description)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
+      <x>156</x>
       <y>864</y>
       <w>888</w>
       <h>192</h>
@@ -126,12 +126,12 @@ Member(int memberId, Membership membership, string fullname, DateTime date, stri
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>588</x>
+      <x>744</x>
       <y>504</y>
       <w>480</w>
       <h>300</h>
     </coordinates>
-    <panel_attributes>Repository
+    <panel_attributes>MemberRepository
 --
 ...
 --
@@ -140,8 +140,7 @@ AddMember(Member newMember)
 UpdateMember(Member updatedMember)
 RemoveMember(int MemberId)
 
-GetActiveMembers(): List&lt;Member&gt;
-GetPassiveMembers(): List&lt;Member&gt;
+GetMembersByMembership(membershipId: int): List&lt;Member&gt;
 GetMemberById(int MemberId): Member
 
 AddMembershipType(Membership newMembership)
@@ -150,5 +149,29 @@ RemoveMembership(int MembershipId)
 
 </panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>744</x>
+      <y>396</y>
+      <w>480</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Repository
+--
+#  CONNECTIONSTRING: string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>972</x>
+      <y>444</y>
+      <w>36</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
 </diagram>

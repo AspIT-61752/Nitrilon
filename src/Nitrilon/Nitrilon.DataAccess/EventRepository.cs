@@ -36,6 +36,8 @@ namespace Nitrilon.DataAccess
                     // So we cast it to an int and store it in the newId variable.
                     newId = (int)reader.GetDecimal(0);
                 }
+                // If the connection is open, close it.
+                CloseConnection();
             }
             catch (Exception excep)
             {
@@ -84,6 +86,8 @@ namespace Nitrilon.DataAccess
 
                     e = new Event(eventId, date, name, attendees, description);
                 }
+                // If the connection is open, close it.
+                CloseConnection();
             }
             catch (Exception)
             {
@@ -135,6 +139,8 @@ namespace Nitrilon.DataAccess
                     Event e = new(id, date, name, attendees, description);
                     events.Add(e);
                 }
+                // If the connection is open, close it.
+                CloseConnection();
             }
             catch (Exception)
             {
@@ -184,6 +190,8 @@ namespace Nitrilon.DataAccess
 
                     events.Add(e);
                 }
+                // If the connection is open, close it.
+                CloseConnection();
             }
             catch (Exception excep)
             {
@@ -226,6 +234,8 @@ namespace Nitrilon.DataAccess
                     goodRatingCount = Convert.ToInt32(reader["RatingGood"]);
                     ratingData = new EventRatingData(badRatingCount, neutralRatingCount, goodRatingCount);
                 }
+                // If the connection is open, close it.
+                CloseConnection();
             }
             catch (Exception)
             {
@@ -255,6 +265,8 @@ namespace Nitrilon.DataAccess
 
                 // Execute the command (Update the event)
                 SqlDataReader reader = Execute(sql);
+                // If the connection is open, close it.
+                CloseConnection();
             }
             catch (Exception)
             {
@@ -294,6 +306,8 @@ namespace Nitrilon.DataAccess
                     // So we cast it to an int and store it in the newId variable.
                     newId = (int)reader.GetDecimal(0);
                 }
+                // If the connection is open, close it.
+                CloseConnection();
             }
             catch (Exception)
             {
