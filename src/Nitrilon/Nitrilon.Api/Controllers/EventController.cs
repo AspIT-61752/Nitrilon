@@ -28,7 +28,7 @@ namespace Nitrilon.Api.Controllers
         [HttpPut]
         public IActionResult Put(Event eventToUpdate)
         {
-            Repository repo = new();
+            EventRepository repo = new();
 
             try
             {
@@ -50,7 +50,7 @@ namespace Nitrilon.Api.Controllers
         [HttpGet]
         public ActionResult<List<Event>> GetAll()
         {
-            Repository repo = new();
+            EventRepository repo = new();
             List<Event> events = new();
 
             try
@@ -74,7 +74,7 @@ namespace Nitrilon.Api.Controllers
         [Route("future")]
         public ActionResult<List<Event>> GetFutureEvents()
         {
-            Repository repo = new();
+            EventRepository repo = new();
             List<Event> events = new();
 
             try
@@ -98,7 +98,7 @@ namespace Nitrilon.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<Event> Get(int id)
         {
-            Repository repo = new();
+            EventRepository repo = new();
             Event e = new();
 
             try
@@ -123,7 +123,7 @@ namespace Nitrilon.Api.Controllers
         [Route("GetEventRatingDataBy")]
         public ActionResult<EventRatingData> GetRatingData(int eventId)
         {
-            Repository repo = new();
+            EventRepository repo = new();
             EventRatingData ratingData = default;
 
             try
@@ -148,7 +148,7 @@ namespace Nitrilon.Api.Controllers
         public IActionResult Add(Event newEvent)
         {
 
-            Repository repo = new();
+            EventRepository repo = new();
             int createdId = default;
 
             try

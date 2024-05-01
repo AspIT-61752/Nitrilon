@@ -17,7 +17,7 @@ namespace Nitrilon.Api.Controllers
         [HttpPost]
         public IActionResult AddEventRating(int eventId, int ratingId)
         {
-            Repository r = new();
+            EventRepository r = new();
             int createdId = default;
 
             try
