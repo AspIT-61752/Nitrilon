@@ -19,7 +19,7 @@ namespace Nitrilon.DataAccess
             try
             {
                 // Add member to database
-                sql = $"INSERT INTO Members (Membership, FullName, JoinDate, Email, PhoneNumber) VALUES ('{member.Membership.MembershipId}', '{member.FullName}', '{member.JoinDate.ToString("yyyy-MM-dd")}', {member.Email}, {member.PhoneNumber}); SELECT SCOPE_IDENTITY();";
+                sql = $"INSERT INTO Members (Membership, FullName, JoinDate, Email, PhoneNumber) VALUES ('{member.Membership.MembershipId}', '{member.FullName}', '{member.JoinDate.ToString("yyyy-MM-dd")}', '{member.Email}', '{member.PhoneNumber}'); SELECT SCOPE_IDENTITY();";
 
                 SqlDataReader reader = Execute(sql);
 
@@ -48,7 +48,7 @@ namespace Nitrilon.DataAccess
             try
             {
                 // Update member in database, the MemberId is used to identify the member
-                sql = $"UPDATE Members SET Membership = '{member.Membership.MembershipId}', FullName = '{member.FullName}', JoinDate = '{member.JoinDate.ToString("yyyy-MM-dd")}', Email = {member.Email}, PhoneNumber = {member.PhoneNumber} WHERE Id = {member.MemberId}; SELECT SCOPE_IDENTITY();";
+                sql = $"UPDATE Members SET Membership = '{member.Membership.MembershipId}', FullName = '{member.FullName}', JoinDate = '{member.JoinDate.ToString("yyyy-MM-dd")}', Email = '{member.Email}', PhoneNumber = '{member.PhoneNumber}' WHERE Id = '{member.MemberId}'; SELECT SCOPE_IDENTITY();";
 
                 SqlDataReader reader = Execute(sql);
 

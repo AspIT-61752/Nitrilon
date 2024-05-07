@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace Nitrilon.Entities
 {
@@ -25,6 +26,12 @@ namespace Nitrilon.Entities
             Email = email;
             PhoneNumber = phoneNumber;
         }
+
+        /// <summary>
+        /// It just works
+        /// </summary>
+        [JsonConstructor]
+        public Member() { }
 
         public int MemberId
         {

@@ -1,4 +1,6 @@
-﻿namespace Nitrilon.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace Nitrilon.Entities
 {
     public class Membership
     {
@@ -12,6 +14,12 @@
             Name = name;
             Description = description;
         }
+
+        /// <summary>
+        /// It just works
+        /// </summary>
+        [JsonConstructor]
+        public Membership() { }
 
         public int MembershipId
         {
