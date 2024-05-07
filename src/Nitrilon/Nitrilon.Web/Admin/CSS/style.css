@@ -1,6 +1,9 @@
 :root {
+  --main-background-color: #3e3e3e;
+
   --button-delete-color: #ff4b5c;
-  --button-add-color: #ff9f1c;
+  --button-add-color: #41f17c;
+  --button-add-text-color: #1b1b1b;
   --button-edit-color: #3582e7;
 }
 
@@ -9,7 +12,7 @@ body {
   font-size: 16px;
   font-weight: bold;
   color: #fff;
-  background-color: #3e3e3e;
+  background-color: var(--main-background-color);
   margin: 0;
   padding: 0;
 }
@@ -68,7 +71,7 @@ ul li p {
 
 #add {
   background-color: var(--button-add-color);
-  color: #ffffff;
+  color: var(--button-add-text-color);
   border: none;
   margin: 10px 10px;
   border-radius: 5px;
