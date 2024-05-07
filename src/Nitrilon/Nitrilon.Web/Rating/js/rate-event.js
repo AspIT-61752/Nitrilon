@@ -1,6 +1,12 @@
 var eventId = -1;
 const eventURL = "https://localhost:7201/api/Event/future";
 
+var ratingContainer = document.querySelector("#ratingContainer");
+
+var goodRating = document.querySelector("#goodRating");
+var midRating = document.querySelector("#midRating");
+var badRating = document.querySelector("#badRating");
+
 // Add an event listener that triggers when the DOM content is fully loaded.
 document.addEventListener("DOMContentLoaded", function () {
   fetchData(); // Fetch initial event data from the API when the page loads.
@@ -64,4 +70,67 @@ function getRatingMenu(event) {
   ratingContainer.classList.toggle("hide");
 
   // TODO: Write the button functionality and add them to the smileys
+
+  // Posts a rating to the DB (1 => bad; 2 => average; 3 => good)
+  // A good rating
+  goodRating.addEventListener("click", function (OnClick) {
+    OnClick.preventDefault(); // Prevents default event propagation
+    sendToServer(3); // Send rating to backend
+  });
+
+  // A mid rating
+  midRating.addEventListener("click", function (OnClick) {
+    OnClick.preventDefault(); // Prevents default event propagation
+    sendToServer(2); // Send rating to backend
+  });
+
+  // A bad rating
+  badRating.addEventListener("click", function (OnClick) {
+    OnClick.preventDefault(); // Prevents default event propagation
+    sendToServer(1); // Send rating to backend
+  });
+}
+
+// POST a rating
+function sendToServer(rating) {
+  // URL parameters
+  let url = `https://localhost:7201/api/EventRatings?eventId=${eventId}&ratingId=${rating}`;
+
+  // Request options
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  // Check if it's a number
+  if (isNaN(rating)) {
+    console.log("Not a number");
+    return;
+  } else {
+    // If is a number, check if it's an integer
+    if (!Number.isInteger(rating)) {
+      console.log("Not an integer"); // If it's not an integer, return
+      return;
+    } else {
+      // console.log("Rating is a number");
+      // If it's a number, send to API endpoint
+      fetch(url, requestOptions)
+        .then((response) => {
+          // If the response is OK, log to the console
+          if (response.ok) {
+            console.log("Rating sent to server");
+          } else {
+            console.log("Rating not sent to server");
+          }
+        })
+        .then((data) => {
+          //   console.log(data); // This returns an undefined object.
+        })
+        .catch((err) => {
+          console.log("Error: ", err);
+        });
+    }
+  }
 }
