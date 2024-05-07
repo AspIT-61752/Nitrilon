@@ -9,32 +9,32 @@ fetch(memberURL)
     // Loop through the events and create <li> elements
     data.forEach((Member) => {
       let li = document.createElement("li");
-      let h2 = document.createElement("h2");
-      let p = document.createElement("p");
-      let p2 = document.createElement("p");
-      let p3 = document.createElement("p");
-      let p4 = document.createElement("p");
+      let Name = document.createElement("h2");
+      let MembershipStatus = document.createElement("p");
+      let CreationDate = document.createElement("p");
+      let PhoneNumb = document.createElement("p");
+      let EmailText = document.createElement("p");
       let buttonContainer = document.createElement("div");
       let del = document.createElement("button");
       let edit = document.createElement("button");
 
       console.log(Member);
 
-      h2.textContent = Member.fullName;
+      Name.textContent = Member.fullName;
 
       if (Member.membership.membershipId == 2) {
-        p.textContent = "Aktiv";
+        MembershipStatus.textContent = "Aktiv";
       } else if (Member.membership.membershipId == 1) {
-        p.textContent = "Passiv";
+        MembershipStatus.textContent = "Passiv";
       }
 
       let date = Member.joinDate.split("T")[0];
-      p2.textContent = date;
-      p2.id = "date";
+      CreationDate.textContent = date;
+      CreationDate.id = "date";
 
-      p3.textContent = Member.phoneNumber;
-      p4.textContent = Member.email;
-      p4.id = "email";
+      PhoneNumb.textContent = Member.phoneNumber;
+      EmailText.textContent = Member.email;
+      EmailText.id = "email";
 
       del.textContent = "Delete";
       del.id = "delete";
@@ -157,16 +157,14 @@ fetch(memberURL)
         document.body.appendChild(modal);
       });
 
-      li.appendChild(h2);
-      li.appendChild(p);
-      li.appendChild(p2);
-      li.appendChild(p3);
-      li.appendChild(p4);
+      li.appendChild(Name);
+      li.appendChild(EmailText);
+      li.appendChild(PhoneNumb);
+      li.appendChild(CreationDate);
+      li.appendChild(MembershipStatus);
       buttonContainer.appendChild(del);
       buttonContainer.appendChild(edit);
       li.appendChild(buttonContainer);
-      //   li.appendChild(del);
-      //   li.appendChild(edit);
 
       memberList.appendChild(li);
     });

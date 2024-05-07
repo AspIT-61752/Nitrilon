@@ -51,11 +51,7 @@ namespace Nitrilon.DataAccess
                 sql = $"UPDATE Members SET Membership = '{member.Membership.MembershipId}', FullName = '{member.FullName}', JoinDate = '{member.JoinDate.ToString("yyyy-MM-dd")}', Email = '{member.Email}', PhoneNumber = '{member.PhoneNumber}' WHERE Id = '{member.MemberId}'; SELECT SCOPE_IDENTITY();";
 
                 SqlDataReader reader = Execute(sql);
-
-                while (reader.Read())
-                {
-                    id = (int)reader.GetDecimal(0);
-                }
+                id = 1;
             }
             catch (Exception)
             {

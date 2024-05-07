@@ -32,14 +32,12 @@ namespace Nitrilon.Api.Controllers
             try
             {
                 memberRepo.UpdateMember(member);
+                return Ok();
             }
             catch (Exception e)
             {
-
                 return StatusCode(500);
             }
-
-            return Ok();
 
         }
 
