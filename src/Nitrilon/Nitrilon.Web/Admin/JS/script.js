@@ -36,7 +36,7 @@ fetch(memberURL)
       EmailText.textContent = Member.email;
       EmailText.id = "email";
 
-      del.textContent = "Delete";
+      del.textContent = "Fjern";
       del.id = "delete";
 
       del.addEventListener("click", function () {
@@ -56,7 +56,7 @@ fetch(memberURL)
         }
       });
 
-      edit.textContent = "Edit";
+      edit.textContent = "Rediger";
       edit.id = "edit";
       edit.addEventListener("click", function () {
         // Create a modal element

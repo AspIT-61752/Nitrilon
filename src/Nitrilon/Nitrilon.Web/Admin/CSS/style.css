@@ -1,3 +1,9 @@
+:root {
+  --button-delete-color: #ff4b5c;
+  --button-add-color: #ff9f1c;
+  --button-edit-color: #3582e7;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
@@ -54,17 +60,14 @@ ul li p,
 ul li h2 {
   font-size: 1em;
   padding: 0 10px;
-  width: 20%;
 }
 
 ul li p {
   color: #dddddd;
-  /* text-align: right;
-  text-align: center; */
 }
 
 #add {
-  background-color: #ff9f1c;
+  background-color: var(--button-add-color);
   color: #ffffff;
   border: none;
   margin: 10px 10px;
@@ -74,7 +77,7 @@ ul li p {
 }
 
 #delete {
-  background-color: #ff4b5c;
+  background-color: var(--button-delete-color);
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -83,7 +86,7 @@ ul li p {
 }
 
 #edit {
-  background-color: #ff9f1c;
+  background-color: var(--button-edit-color);
   color: #ffffff;
   border: none;
   border-radius: 5px;
