@@ -9,24 +9,23 @@ namespace Nitrilon.Api.Controllers
     public class MemberController : ControllerBase
     {
         [HttpPost]
-        public void AddMember(Member member)
+        public ActionResult<int> AddMember(Member member)
         {
             MemberRepository memberRepo = new MemberRepository();
 
             try
             {
-                memberRepo.AddMember(member);
+                int id = memberRepo.AddMember(member);
+                return Ok(id);
             }
             catch (Exception e)
             {
-
-                StatusCode(500);
+                return StatusCode(500);
             }
-
         }
 
         [HttpPut]
-        public void UpdateMember(Member member)
+        public IActionResult UpdateMember(Member member)
         {
             MemberRepository memberRepo = new MemberRepository();
 
@@ -37,13 +36,15 @@ namespace Nitrilon.Api.Controllers
             catch (Exception e)
             {
 
-                StatusCode(500);
+                return StatusCode(500);
             }
+
+            return Ok();
 
         }
 
         [HttpGet]
-        public List<Member> GetAllMembers()
+        public IActionResult GetAllMembers()
         {
             List<Member> members = new();
             MemberRepository memberRepo = new();
@@ -54,21 +55,43 @@ namespace Nitrilon.Api.Controllers
             }
             catch (Exception e)
             {
-                StatusCode(500);
+                return StatusCode(500);
             }
 
-            return members;
+            return Ok(members);
         }
 
         [HttpGet("{id}")]
-        public Member GetMemberById(int id)
+        public ActionResult<Member> GetMemberById(int id)
         {
             Member member = null;
             MemberRepository memberRepo = new();
 
-            member = memberRepo.GetMemberBy(id);
+            try
+            {
+                member = memberRepo.GetMemberBy(id);
+                return Ok(member);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
+        }
 
-            return member;
+        [HttpDelete]
+        public IActionResult DeleteMemberById(int id)
+        {
+            MemberRepository memberRepo = new();
+
+            try
+            {
+                memberRepo.RemoveMemberBy(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
 
     }
