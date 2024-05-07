@@ -1,5 +1,7 @@
 :root {
   --main-background-color: #3e3e3e;
+  --list-color: #484a52;
+  --list-text-color: #dddddd;
 
   --button-delete-color: #ff4b5c;
   --button-add-color: #41f17c;
@@ -41,7 +43,7 @@ ul li {
   display: flex;
   align-items: center;
   padding: 10px;
-  background-color: #484a52;
+  background-color: var(--list-color);
   margin: 10px 0;
   border-radius: 10px;
 
@@ -66,7 +68,7 @@ ul li h2 {
 }
 
 ul li p {
-  color: #dddddd;
+  color: var(--list-text-color);
 }
 
 #add {
@@ -117,7 +119,7 @@ ul li p {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: #484a52;
+  background-color: var(--list-color);
   padding: 20px;
   margin: 15%;
   border-radius: 10px;
