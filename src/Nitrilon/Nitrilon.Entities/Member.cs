@@ -122,7 +122,7 @@ namespace Nitrilon.Entities
                 {
                     // https://regex101.com/library/wZ4uU6?orderBy=RELEVANCE&search=phone
                     // https://regex101.com/r/wZ4uU6/2
-                    string regexPattern = @"/(?:([+]\d{1,4})[-.\s]?)?(?:[(](\d{1,3})[)][-.\s]?)?(\d{1,4})[-.\s]?(\d{1,4})[-.\s]?(\d{1,9})/g"; // This is a regex pattern that matches phone numbers. I got if from the link above.
+                    string regexPattern = @"(?:([+]\d{1,4})[-.\s]?)?(?:[(](\d{1,3})[)][-.\s]?)?(\d{1,4})[-.\s]?(\d{1,4})[-.\s]?(\d{1,9})"; // This is a regex pattern that matches phone numbers. I got if from the link above.
 
                     // https://regexr.com/3c53v
                     //string regexPattern = @"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"; // This is a regex pattern that matches phone numbers. I got if from the link above.

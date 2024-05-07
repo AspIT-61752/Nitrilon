@@ -7,6 +7,8 @@ namespace Nitrilon.DataAccess
     {
         public MemberRepository() : base() { }
 
+        private const string getAllMembershipsSQL = "SELECT * FROM Memberships;";
+
         #region MemberMethods
 
         public int AddMember(Member member)
@@ -25,9 +27,6 @@ namespace Nitrilon.DataAccess
                 {
                     id = (int)reader.GetDecimal(0);
                 }
-
-                // If the connection is open, close it.
-                CloseConnection();
             }
             catch (Exception)
             {
@@ -57,9 +56,6 @@ namespace Nitrilon.DataAccess
                 {
                     id = (int)reader.GetDecimal(0);
                 }
-
-                // If the connection is open, close it.
-                CloseConnection();
             }
             catch (Exception)
             {
@@ -88,9 +84,6 @@ namespace Nitrilon.DataAccess
                 {
                     id = (int)reader.GetDecimal(0);
                 }
-
-                // Close the connection if it's open
-                CloseConnection();
             }
             catch (Exception)
             {
@@ -104,6 +97,40 @@ namespace Nitrilon.DataAccess
             return id;
         }
 
+        public List<Member> GetMembers()
+        {
+            List<Member> members = new();
+            string sql = default;
+
+            try
+            {
+                // Membership ID 2 is the active membership
+                sql = $"SELECT * FROM Members;";
+
+                List<Membership> memberships = new List<Membership>();
+                memberships = GetMemberships();
+
+                SqlDataReader memberReader = Execute(sql);
+
+                while (memberReader.Read())
+                {
+                    Member tempMember = ReadMemberDataFrom(memberReader, memberships);
+                    members.Add(tempMember);
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Failed to get member(s) from database");
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return members;
+
+        }
+
         public List<Member> GetMembersByMembership(int membershipId)
         {
             List<Member> members = new();
@@ -114,15 +141,16 @@ namespace Nitrilon.DataAccess
                 // Membership ID 2 is the active membership
                 sql = $"SELECT * FROM Members WHERE Membership = {membershipId};";
 
-                SqlDataReader reader = Execute(sql);
+                List<Membership> memberships = new List<Membership>();
+                memberships = GetMemberships();
 
-                while (reader.Read())
+                SqlDataReader memberReader = Execute(sql);
+
+                while (memberReader.Read())
                 {
-                    members.Add(ReadMemberDataFrom(reader));
+                    Member tempMember = ReadMemberDataFrom(memberReader, memberships);
+                    members.Add(tempMember);
                 }
-
-                // Close the connection if it's open
-                CloseConnection();
             }
             catch (Exception)
             {
@@ -146,15 +174,15 @@ namespace Nitrilon.DataAccess
                 // Get member from database by memberId
                 sql = $"SELECT * FROM Members WHERE Id = {memberId};";
 
-                SqlDataReader reader = Execute(sql);
+                List<Membership> memberships = new List<Membership>();
+                memberships = GetMemberships();
 
-                while (reader.Read())
+                SqlDataReader memberReader = Execute(sql);
+
+                while (memberReader.Read())
                 {
-                    member = ReadMemberDataFrom(reader);
+                    member = ReadMemberDataFrom(memberReader, memberships);
                 }
-
-                // If the connection is open, close it.
-                CloseConnection();
             }
             catch (Exception)
             {
@@ -168,16 +196,26 @@ namespace Nitrilon.DataAccess
             return member;
         }
 
-        private Member ReadMemberDataFrom(SqlDataReader reader)
+        private Member ReadMemberDataFrom(SqlDataReader reader, List<Membership> memberships)
         {
-            Member memberData = default;
 
-            memberData.MemberId = Convert.ToInt32(reader["Id"]);
-            memberData.Membership = new Membership(Convert.ToInt32(reader["Membership"]), "", ""); // Should I also get the name and description of the membership?
-            memberData.FullName = reader["FullName"].ToString();
-            memberData.JoinDate = Convert.ToDateTime(reader["JoinDate"]);
-            memberData.Email = reader["Email"].ToString();
-            memberData.PhoneNumber = reader["PhoneNumber"].ToString();
+            int memberId = Convert.ToInt32(reader["Id"]);
+            int membershipId = Convert.ToInt32(reader["Membership"]);
+            Membership membershipToAdd = default;
+            foreach (Membership membership in memberships)
+            {
+                if (membership.MembershipId == membershipId)
+                {
+                    membershipToAdd = membership;
+                    break;
+                }
+            }
+            string fullName = reader["FullName"].ToString();
+            DateTime joinDate = Convert.ToDateTime(reader["JoinDate"].ToString());
+            string email = reader["Email"].ToString();
+            string phoneNumber = reader["PhoneNumber"].ToString();
+
+            Member memberData = new(memberId, membershipToAdd, fullName, joinDate, email, phoneNumber);
 
             return memberData;
         }
@@ -202,9 +240,6 @@ namespace Nitrilon.DataAccess
                 {
                     id = (int)reader.GetDecimal(0);
                 }
-
-                // If the connection is open, close it.
-                CloseConnection();
             }
             catch (Exception)
             {
@@ -221,7 +256,7 @@ namespace Nitrilon.DataAccess
 
         public Membership GetMembershipBy(int id)
         {
-            Membership membership = default;
+            Membership membership = null;
             string sql = default;
 
             try
@@ -232,11 +267,8 @@ namespace Nitrilon.DataAccess
 
                 while (reader.Read())
                 {
-                    ReadMembershipDataFrom(reader);
+                    membership = ReadMembershipDataFrom(reader);
                 }
-
-                // If the connection is open, close it.
-                CloseConnection();
             }
             catch (Exception)
             {
@@ -252,21 +284,18 @@ namespace Nitrilon.DataAccess
 
         public List<Membership> GetMemberships()
         {
-            List<Membership> memberships = new();
+            List<Membership> memberships = new List<Membership>();
             string sql = default;
 
             try
             {
-                sql = "SELECT * FROM Memberships;";
-                SqlDataReader reader = Execute(sql);
+                SqlDataReader reader = Execute(getAllMembershipsSQL);
 
                 while (reader.Read())
                 {
-                    memberships.Add(ReadMembershipDataFrom(reader));
+                    Membership tempMembership = ReadMembershipDataFrom(reader);
+                    memberships.Add(tempMembership);
                 }
-
-                // If the connection is open, close it.
-                CloseConnection();
             }
             catch (Exception)
             {
@@ -282,11 +311,11 @@ namespace Nitrilon.DataAccess
 
         private Membership ReadMembershipDataFrom(SqlDataReader reader)
         {
-            Membership membershipData = default;
+            int memberId = Convert.ToInt32(reader["Id"]);
+            string name = reader["Name"].ToString();
+            string description = reader["Description"].ToString();
 
-            membershipData.MembershipId = Convert.ToInt32(reader["Id"]);
-            membershipData.Name = reader["Name"].ToString();
-            membershipData.Description = reader["Description"].ToString();
+            Membership membershipData = new(memberId, name, description);
 
             return membershipData;
         }
