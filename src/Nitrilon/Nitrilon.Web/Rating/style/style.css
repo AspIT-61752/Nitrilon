@@ -3,183 +3,183 @@
 
 /* ? Variables */
 :root {
-  --card-container-background-color: #282c34;
-  --card-height: 8rem;
-  --card-padding: 0.2rem;
-  --card-width: 40%;
+	--card-container-background-color: #282c34;
+	--card-height: 8rem;
+	--card-padding: 0.2rem;
+	--card-width: 40%;
 
-  --main-color: #c79956;
-  --text-color: #c3d7df;
-  --alt-text-color: #6991ac;
-  --background-color: #f5f5f5;
-  --alt-background-color: #282c34;
+	--main-color: #c79956;
+	--text-color: #c3d7df;
+	--alt-text-color: #6991ac;
+	--background-color: #f5f5f5;
+	--alt-background-color: #282c34;
 
-  --font-railway: "Raleway", sans-serif;
-  --font-open-sans: "Open Sans", sans-serif;
+	--font-railway: "Raleway", sans-serif;
+	--font-open-sans: "Open Sans", sans-serif;
 }
 
 * {
-  padding: 0;
-  margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 body {
-  height: 100%;
-  background-color: var(--alt-text-color);
+	height: 100%;
+	background-color: var(--alt-text-color);
 }
 
 h1,
 h2,
 h3,
 p {
-  font-family: var(--font-railway);
+	font-family: var(--font-railway);
 }
 
 h3 {
-  font-weight: 500;
+	font-weight: 500;
 }
 
 p {
-  font-weight: 400;
+	font-weight: 400;
 }
 
 /* ? Classes */
 
 .card {
-  min-width: 256px;
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding: 0.4rem 0;
+	min-width: 256px;
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-bottom: 2rem;
+	padding: 0.4rem 0;
 
-  background-color: var(--card-container-background-color);
-  border-radius: 0.2rem;
-  min-height: var(--card-height);
-  max-height: var(--card-height);
+	background-color: var(--card-container-background-color);
+	border-radius: 0.2rem;
+	min-height: var(--card-height);
+	max-height: var(--card-height);
 
-  color: var(--text-color);
+	color: var(--text-color);
 }
 
 .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .card-header > * {
-  width: 50%;
+	width: 50%;
 }
 
 .card-header h3:first-of-type {
-  text-align: left;
-  padding-left: var(--card-padding);
+	text-align: left;
+	padding-left: var(--card-padding);
 }
 
 .card-header h3:last-of-type {
-  text-align: right;
-  padding-right: var(--card-padding);
+	text-align: right;
+	padding-right: var(--card-padding);
 
-  /* Not sure if this makes it better or not, have to ask for a second oppinion */
-  /* font-size: 1.5rem; */
+	/* Not sure if this makes it better or not, have to ask for a second oppinion */
+	/* font-size: 1.5rem; */
 }
 
 .card-desc {
-  padding: 0 var(--card-padding);
+	padding: 0 var(--card-padding);
 }
 
 .raleway-font {
-  font-family: var(--font-railway);
-  font-optical-sizing: auto;
-  font-weight: 100;
-  font-style: normal;
+	font-family: var(--font-railway);
+	font-optical-sizing: auto;
+	font-weight: 100;
+	font-style: normal;
 }
 
 /* <weight>: Use a value from 300 to 800 */
 /* <width>: Use a value from 75 to 100 */
 
 .open-sans-font {
-  font-family: "Open Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  /* font-variation-settings:
+	font-family: "Open Sans", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+	/* font-variation-settings:
     "width" <width>; */
 }
 
 /* ? IDs */
 
 #card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: center;
 }
 
 #event-selection {
-  color: black;
-  /* text-align: center;
+	color: black;
+	/* text-align: center;
   margin: 4vh 0; */
 
-  /* How the font looks */
-  font-family: "Open Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 4rem;
+	/* How the font looks */
+	font-family: "Open Sans", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
+	font-size: 4rem;
 }
 
 /* IDs for the rating elements */
 #rating-container {
-  text-align: center;
-  align-content: center;
-  width: 100%;
-  height: 100vh;
+	text-align: center;
+	align-content: center;
+	width: 100%;
+	height: 100vh;
 }
 
 #rating-button-container {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  margin: 16vh 0;
-  gap: 1rem;
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	margin: 16vh 0;
+	gap: 1rem;
 }
 
 #rating-button-container > img {
-  width: 18vw;
+	width: 18vw;
 }
 
 /* Used to hide the rating section */
 #rating-container.hide {
-  display: none;
+	display: none;
 }
 
 /* view event ratings */
 
 #data-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
 }
 
 #data-container > div {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-  width: var(--card-width);
+	width: var(--card-width);
 
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 0.2rem;
+	gap: 0.5rem;
+	padding: 0.5rem;
+	border-radius: 0.2rem;
 
-  background-color: var(--alt-background-color);
-  color: var(--text-color);
+	background-color: var(--alt-background-color);
+	color: var(--text-color);
 }
 
 #data-container > div h2 {
-  color: var(--main-color);
-  border-bottom: 1px solid;
+	color: var(--main-color);
+	border-bottom: 1px solid;
 }
