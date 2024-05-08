@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>140</y>
+      <x>260</x>
+      <y>160</y>
       <w>260</w>
       <h>230</h>
     </coordinates>
@@ -14,7 +14,7 @@
 - connectionString : string
 --
 + GetAllEvents() : List&lt;Event&gt;
-+ SaveEvent(eventToSave : Event) : int</panel_attributes>
++ Save(newEvent : Event) : int</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

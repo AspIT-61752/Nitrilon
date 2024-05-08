@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>12</zoom_level>
+  <zoom_level>11</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>156</x>
-      <y>216</y>
-      <w>480</w>
-      <h>168</h>
+      <x>66</x>
+      <y>198</y>
+      <w>440</w>
+      <h>154</h>
     </coordinates>
     <panel_attributes>Members
 --
@@ -23,10 +23,10 @@ PhoneNumber: nvchar(16)
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>156</x>
+      <x>66</x>
       <y>0</y>
-      <w>1512</w>
-      <h>192</h>
+      <w>1386</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>SRC support.discord.com
 (smaller than nvchar(MAX) 2GB vs text 65kb)
@@ -45,10 +45,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1452</x>
-      <y>216</y>
-      <w>216</w>
-      <h>168</h>
+      <x>1254</x>
+      <y>198</y>
+      <w>198</w>
+      <h>154</h>
     </coordinates>
     <panel_attributes>Memberships
 --
@@ -61,10 +61,10 @@ Desc: nvchar(MAX)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>264</y>
-      <w>852</w>
-      <h>48</h>
+      <x>495</x>
+      <y>242</y>
+      <w>781</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -74,10 +74,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1032</x>
-      <y>912</y>
-      <w>180</w>
-      <h>48</h>
+      <x>869</x>
+      <y>836</y>
+      <w>165</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
@@ -87,10 +87,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1188</x>
-      <y>864</y>
-      <w>480</w>
-      <h>192</h>
+      <x>1012</x>
+      <y>792</y>
+      <w>440</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>Membership
 --
@@ -104,10 +104,10 @@ Membership(int membershipId, string name, string description)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>156</x>
-      <y>864</y>
-      <w>888</w>
-      <h>192</h>
+      <x>66</x>
+      <y>792</y>
+      <w>814</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>Member
 --
@@ -126,10 +126,10 @@ Member(int memberId, Membership membership, string fullname, DateTime date, stri
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>744</x>
-      <y>504</y>
-      <w>480</w>
-      <h>300</h>
+      <x>605</x>
+      <y>462</y>
+      <w>440</w>
+      <h>275</h>
     </coordinates>
     <panel_attributes>MemberRepository
 --
@@ -153,10 +153,10 @@ RemoveMembership(int MembershipId)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>744</x>
-      <y>396</y>
-      <w>480</w>
-      <h>60</h>
+      <x>605</x>
+      <y>363</y>
+      <w>440</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>Repository
 --
@@ -166,10 +166,10 @@ RemoveMembership(int MembershipId)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>972</x>
-      <y>444</y>
-      <w>36</w>
-      <h>84</h>
+      <x>814</x>
+      <y>407</y>
+      <w>33</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>

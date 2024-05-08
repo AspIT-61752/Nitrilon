@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>11</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>341</x>
-      <y>374</y>
-      <w>231</w>
-      <h>121</h>
+      <x>190</x>
+      <y>400</y>
+      <w>210</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Events
 --
@@ -21,10 +21,10 @@ Description : ntext = 'Dette event har endnu ingen beskrivelse.'</panel_attribut
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>693</x>
-      <y>374</y>
-      <w>242</w>
-      <h>121</h>
+      <x>510</x>
+      <y>400</y>
+      <w>220</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>EventRatings
 --
@@ -38,10 +38,10 @@ CONSTRAINT FK_EventRatings_Ratings {FK} (RatingId) REFERENCES Ratings(RatingId)<
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>561</x>
-      <y>374</y>
-      <w>154</w>
-      <h>44</h>
+      <x>390</x>
+      <y>400</y>
+      <w>140</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
@@ -51,10 +51,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1067</x>
-      <y>374</y>
-      <w>242</w>
-      <h>88</h>
+      <x>850</x>
+      <y>400</y>
+      <w>220</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Ratings
 --
@@ -66,10 +66,10 @@ Description : nvarchar(MAX) NOT NULL</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>924</x>
-      <y>374</y>
-      <w>165</w>
-      <h>44</h>
+      <x>720</x>
+      <y>400</y>
+      <w>150</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -79,10 +79,10 @@ m2=*</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>429</x>
-      <y>253</y>
-      <w>319</w>
-      <h>77</h>
+      <x>270</x>
+      <y>290</y>
+      <w>290</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Mandatory columns are with *bold*
 bg=white</panel_attributes>
