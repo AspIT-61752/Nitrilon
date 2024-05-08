@@ -65,7 +65,7 @@ namespace Nitrilon.Entities
             get => fullName;
             set
             {
-                ArgumentOutOfRangeException.ThrowIfNullOrWhiteSpace(value);
+                ArgumentException.ThrowIfNullOrWhiteSpace(value);
                 if (fullName != value)
                 {
                     fullName = value;
@@ -145,12 +145,6 @@ namespace Nitrilon.Entities
                     {
                         throw new ArgumentException("Phone number is too long");
                     }
-
-                    // Validate phone number here. For now, just check if it contains only numbers and is 10 characters long.
-                    //if (!value.All(char.IsDigit) || ( || value.Length <= 16))
-                    //{
-                    //    throw new ArgumentException("Invalid phone number");
-                    //}
 
                     phoneNumber = value;
                 }
