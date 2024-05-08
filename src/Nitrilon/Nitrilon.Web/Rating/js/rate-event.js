@@ -121,6 +121,7 @@ function sendToServer(rating) {
 					// If the response is OK, log to the console
 					if (response.ok) {
 						console.log("Rating sent to server");
+						applyFadeEffect(); // Apply fade effect to the feedback message
 					} else {
 						console.log("Rating not sent to server");
 					}
@@ -133,4 +134,13 @@ function sendToServer(rating) {
 				});
 		}
 	}
+}
+
+function applyFadeEffect() {
+	const messageElement = document.getElementById("feedback-message");
+	messageElement.classList.add("fade-in-out");
+
+	setTimeout(() => {
+		messageElement.classList.remove("fade-in-out");
+	}, 3000); // This should be 3000, because the keyframes in the CSS file is set to 3 seconds.
 }

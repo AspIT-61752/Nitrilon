@@ -109,6 +109,31 @@ p {
     "width" <width>; */
 }
 
+/* ? Animation */
+#feedback-message {
+	/* Start as hidden */
+	opacity: 0;
+	/* visibility: hidden;  */
+	/* animation-fill-mode: forwards;  */
+	/* Holds the state of the last animation frame when the animation finishes */
+	font-size: larger;
+}
+
+.fade-in-out {
+	animation: fadeInOut 3s infinite;
+}
+
+@keyframes fadeInOut {
+	0%,
+	100% {
+		opacity: 0;
+	}
+	8%,
+	80% {
+		opacity: 1;
+	}
+}
+
 /* ? IDs */
 
 #card-container {

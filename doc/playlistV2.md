@@ -16,6 +16,7 @@
 # UI/UX og Funktionaliteter:
 
 - Vis eksempler på UI og hvordan det interagerer med de bagvedliggende systemkomponenter.
+  - Jeg tror vi har overset at de skulle kunne oprette et event.
 - Gennemgå de funktionelle krav og hvordan de implementeres i UI'et.
 
 # Construction:
