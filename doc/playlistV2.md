@@ -43,6 +43,8 @@
 - **Encapsulation/Indkapsling SUMMARY:** 1. Internal state is hidden from direct external access. 2. Access is mediated through methods or properties, which can (And should) implement validation or other logic. 3. Data integrity is maintained by preventing improper settings of field values.
   **Controlling access to components of an object**
 - **Inheritance/Arv:** Something is something else (Is a Volkswagen ID.4 a Car. In this example the Car is the base-class)
+- **Find Entities:** Nouns. (En, Et, -er) Stuff that exists.
+- **Name Methods:** Verb. (At, Jeg, De) Actions.
 
 ## Other
 
